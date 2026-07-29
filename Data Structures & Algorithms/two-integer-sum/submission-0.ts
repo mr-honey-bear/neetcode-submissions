@@ -5,16 +5,21 @@ class Solution {
      * @return {number[]}
      */
     twoSum(nums: number[], target: number): number[] {
-    let hashMap = {};
-    for (let i=0; i < nums.length; i++) {
-        let targetNumber = target - nums[i];
-		// or hashMap[targetNumber) !== undefined
-        if (targetNumber in hashMap) {
-            return [i, hashMap[targetNumber]]
-        } else {
-            hashMap[nums[i]] = i
+        // num[a] + num[b] = target -> num[a] = target - num[a] 
+        let hash = {};
+
+        for (let i = 0; i < nums.length; i++) {
+            let el = nums[i];
+            let num = target - el;
+
+            if (hash[num] == undefined) {
+                hash[el] = i;
+            } else {
+                return [i, hash[num]]
+            }
+
         }
+
+        return [];
     }
-    return [];
-    };
 }
