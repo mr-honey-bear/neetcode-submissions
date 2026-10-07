@@ -1,0 +1,27 @@
+class Solution {
+    /**
+     * @param {number[]} nums1
+     * @param {number} m
+     * @param {number[]} nums2
+     * @param {number} n
+     * @return {void} Do not return anything, modify nums1 in-place instead.
+     */
+    merge(nums1: number[], m: number, nums2: number[], n: number): void {
+        let p1 = m-1;
+        let p2 = n-1;
+        let last = nums1.length -1;
+
+        let res = [];
+        while (p2 >= 0 && p1 >= 0) {
+            if(p1 >= 0 && nums1[p1] > nums2[p2]) {
+                nums1[last--] = nums1[p1--];
+            } else {
+                nums1[last--] = nums2[p2--]; 
+            }
+        }
+
+        while (p2 >= 0) {
+            nums1[last--] = nums2[p2--];
+        }
+    }
+}
